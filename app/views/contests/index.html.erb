@@ -1,0 +1,9 @@
+<h2>Contests</h2>
+
+<%= link_to 'New +', new_contest_path, class: 'btn btn-primary' %>
+
+<% @contests.each do |contest| %>
+  <div class="contest-row">
+    <%= link_to contest.name, contest_path(contest) %>
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+<h2>Putters</h2>
+
+<%= link_to 'New +', new_putter_path, class: 'btn btn-primary' %>
+
+<% @putters.each do |putter| %>
+  <div class="putter-row">
+    <%= link_to putter.name, putter_path(putter) %>
+  </div>
+<% end %>

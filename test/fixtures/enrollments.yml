@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  putter: one
+  contest: one
+  active: false
+
+two:
+  putter: two
+  contest: two
+  active: false
