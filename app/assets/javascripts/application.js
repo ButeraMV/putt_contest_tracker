@@ -14,6 +14,22 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-//= require jquery3
-//= require popper
+//= require jquery
 //= require bootstrap-sprockets
+
+function toggleAdvancing(element) {
+  var row = element.parentElement.parentElement
+  row.classList.add("hidden");
+}
+
+function toggleOut(element) {
+  var row = element.parentElement.parentElement
+  row.classList.add("hidden");
+}
+
+function refreshPage() {
+  var goodToGo = confirm("Move to next round?")
+  if(goodToGo) {
+    location.reload(true)  
+  }
+}
