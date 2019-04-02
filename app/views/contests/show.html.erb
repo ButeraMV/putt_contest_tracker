@@ -1,16 +1,14 @@
-<h2><%= @contest.name %></h2>
+<h1><%= @contest.name %></h1>
 
-<table>
-  <% @participants.each do |participant| %>
-    <tr class="putter-row" id="putter-<%= participant.putter_id %>">
-      <td><%= Putter.find(participant.putter_id).name %></td>
-      <td><button id="advancing-button" class="btn btn-success" onClick="toggleAdvancing(this)">Advancing</button></td>
-      <td><%= link_to 'Out', contest_remove_enrollment_path(putter_id: participant.putter_id, contest_id: participant.contest_id), class: 'btn btn-danger', onclick: 'toggleOut(this)', remote: true %></td>
-    </tr>
-  <% end %>
-</table>
+<h3>Next Up:</h3>
+
+<% @participants.each do |participant| %>
+  <div class="putter-row" id="putter-<%= participant.putter_id %>">
+    <h2><%= Putter.find(participant.putter_id).name %></h2>
+    <button id="advancing-button" class="btn btn-success" onClick="toggleAdvancing(this)">Advancing</button>
+    <%= link_to 'Out', contest_remove_enrollment_path(putter_id: participant.putter_id, contest_id: participant.contest_id), class: 'btn btn-danger', onclick: 'toggleOut(this)', remote: true %>
+  </div>
+<% end %>
+
 
 <input type="button" class="btn btn-primary" value="Next Round" onClick="refreshPage()">
-
-
-
