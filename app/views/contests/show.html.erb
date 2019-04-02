@@ -2,13 +2,17 @@
 
 <h3>Next Up:</h3>
 
-<% @participants.each do |participant| %>
-  <div class="putter-row" id="putter-<%= participant.putter_id %>">
-    <h2><%= Putter.find(participant.putter_id).name %></h2>
-    <button id="advancing-button" class="btn btn-success" onClick="toggleAdvancing(this)">Advancing</button>
-    <%= link_to 'Out', contest_remove_enrollment_path(putter_id: participant.putter_id, contest_id: participant.contest_id), class: 'btn btn-danger', onclick: 'toggleOut(this)', remote: true %>
-  </div>
+<%= simple_form_for @contest do |f| %>
+  <% @enrollments.each do |enrollment| %>
+    <div class="putter-row" id="putter-<%= enrollment.putter_id %>">
+      <h2><%= Putter.find(enrollment.putter_id).name %></h2>
+      <%= f.simple_fields_for :enrollments do |enrollments_form| %>
+        <%= hidden_field_tag 'putter_id', "#{@contest.id}" %>
+        <%= enrollments_form.input :active, as: :check_boxes %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= f.button :submit %>
 <% end %>
-
 
 <input type="button" class="btn btn-primary" value="Next Round" onClick="refreshPage()">

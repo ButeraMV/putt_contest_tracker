@@ -5,7 +5,7 @@ class ContestsController < ApplicationController
 
   def show
     @contest = Contest.find(params[:id])
-    @participants = @contest.enrollments.where(active: true)
+    @enrollments = @contest.enrollments.where(active: true)
   end
 
   def new
@@ -19,6 +19,11 @@ class ContestsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def update
+    @contest = Contest.find(params[:id])
+    byebug
   end
 
   def remove_enrollment
